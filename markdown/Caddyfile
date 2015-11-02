@@ -1,0 +1,6 @@
+localhost:8080
+
+markdown / {
+    template blog templates/blog.html
+    template index templates/index.html
+}

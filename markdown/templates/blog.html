@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{{.Doc.title}}</title>
+
+        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+    </head>
+    <body>
+        <header>
+            <a href="/"><h1 class="page-title">{{.Doc.sitename}}</h1></a>
+        </header>
+
+        <article>
+            <h1>{{.Doc.title}}</h1>
+            {{.Doc.body}}
+        </article>
+    </body>
+</html>
