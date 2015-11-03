@@ -18,4 +18,4 @@ The file `index.md` has a special role as it holds no content, but acts as the l
 
 ## Running Caddy
 
-To start Caddy with this example, simply execute `caddy -conf=Caddyfile` from this folder.
+To start Caddy with this example, simply execute `caddy` from this folder.
