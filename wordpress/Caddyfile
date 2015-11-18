@@ -1,0 +1,2 @@
+localhost:8080
+fastcgi / unix:/var/run/php5-fpm.sock php
