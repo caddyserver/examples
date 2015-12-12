@@ -1,4 +1,4 @@
-mygogs {
+mygogs.com {
     proxy / localhost:3000 {
         except /css /fonts /js /img
     }
