@@ -68,6 +68,7 @@ The most common error you might encounter is `502 Bad Gateway`. In this case, pr
 - Check `/var/log/php5-fpm.log` for any errors.
 - Add `errors visible` to your `Caddyfile`
 - Often times, php-fpm doesn't work because of wrong permissions. Check the error logs and change the user in `/etc/php5/fpm/pool.d/www.conf`
+- If using a unix socket, make sure Caddy has access to the socket file.
 - Switching to a TCP socket might help. Change the listen directive in `/etc/php5/fpm/pool.d/www.conf` to `listen = 127.0.0.1:9000` and adjust your `Caddyfile` accordingly.
 
 Otherwise, search for guides on how to set up `fastcgi` for Nginx. The configuration for `fastcgi` is identical for Nginx and Caddy, but Nginx has a lot more tutorials online.
