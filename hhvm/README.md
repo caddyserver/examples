@@ -39,8 +39,8 @@ sudo update-rc.d hhvm defaults
 ## HHVM configuration ##
 
 Now we have HHVM running by default on localhost:9000, but we want it to run
-in an UNIX socket, because the performance is better this way and. And we can do it
-because we're running HHVM and Caddy in the same server.
+in an UNIX socket, because the performance is better this way. We can do it
+because we're running HHVM and Caddy in the same machine.
 
 Let's edit the HHVM configuration file with any text editor (nano for example):
 
@@ -73,7 +73,7 @@ After editing the file, restart HHVM:
 sudo /etc/init.d/hhvm restart
 ```
 
-And now we have HHVM working on UNIX socket.
+And now we have HHVM working on an UNIX socket.
 
 ## Caddy configuration ##
 
@@ -88,7 +88,7 @@ And with this Caddyfile (in the same folder) create a file called `index.php`
 with this content:
 
 ```php
-<?php php_info(); ?>
+<?php phpinfo(); ?>
 ```
 
 Run caddy in the folder, open `localhost:8080` in the web browser, and if
