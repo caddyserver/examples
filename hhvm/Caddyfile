@@ -1,0 +1,2 @@
+localhost:8080
+fastcgi / unix:/var/run/hhvm/sock php
