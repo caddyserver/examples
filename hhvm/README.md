@@ -94,6 +94,8 @@ with this content:
 Run caddy in the folder, open `localhost:8080` in the web browser, and if
 you see something like this, you have HHVM running with Caddy.
 
+![HHVM Working](http://i.imgur.com/E2MZVVL.png)
+
 # FAQ #
 
 #### I get a 'Bad Gateway' error ####
