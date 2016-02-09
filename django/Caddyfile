@@ -1,8 +1,8 @@
 domain.tld {
-    proxy / localhost:8000 {
-                proxy_header Host {host}
-                except /media /static
-    }
+	proxy / localhost:8000 {
+		proxy_header Host {host}
+		except /media /static
+	}
 
-   root /var/www/project/folder
+	root /var/www/project/folder
 }
