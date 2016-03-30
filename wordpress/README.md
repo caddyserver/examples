@@ -59,6 +59,8 @@ curl -SL http://wordpress.org/latest.tar.gz | tar --strip 1 -xzf -
 
 ````
 
+Use the Caddyfile in this example and make sure that fastcgi is listening on port 9000
+
 Now, we can finally run `caddy`. If everything went right, you'll be greeted by WordPress once you visit `http://localhost:8080`. From here on, WordPress will guide you through the rest of the setup.
 
 ## Troubleshooting
@@ -68,7 +70,7 @@ The most common error you might encounter is `502 Bad Gateway`. In this case, pr
 - Check `/var/log/php5-fpm.log` for any errors.
 - Add `errors visible` to your `Caddyfile`
 - Often times, php-fpm doesn't work because of wrong permissions. Check the error logs and change the user in `/etc/php5/fpm/pool.d/www.conf`
+- Switching to a Unix socket might help. Change the listen directive in `/etc/php5/fpm/pool.d/www.conf` to `listen = unix:/var/run/php5-fpm.sock` and adjust your `Caddyfile` accordingly.
 - If using a unix socket, make sure Caddy has access to the socket file.
-- Switching to a TCP socket might help. Change the listen directive in `/etc/php5/fpm/pool.d/www.conf` to `listen = 127.0.0.1:9000` and adjust your `Caddyfile` accordingly.
 
 Otherwise, search for guides on how to set up `fastcgi` for Nginx. The configuration for `fastcgi` is identical for Nginx and Caddy, but Nginx has a lot more tutorials online.
