@@ -1,6 +1,7 @@
 domain.tld {
 	proxy / localhost:8000 {
 		proxy_header Host {host}
+		proxy_header X-Forwarded-Proto {scheme}
 		except /media /static
 	}
 
