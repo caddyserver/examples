@@ -15,8 +15,6 @@ https://gitlab.example.com {
         fail_timeout 300s
 
         proxy_header Host {host}
-        #proxy_header Connection {>Connection}
-        #proxy_header Upgrade {>Upgrade}
         proxy_header X-Real-IP {remote}
         proxy_header X-Forwarded-Proto {scheme}
         proxy_header X-Forwarded-Ssl on
