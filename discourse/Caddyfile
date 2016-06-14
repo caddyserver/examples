@@ -1,0 +1,5 @@
+forum.yoursite.com
+
+proxy / localhost:8080 {
+	transparent
+}
