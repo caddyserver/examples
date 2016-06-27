@@ -18,7 +18,8 @@ $ ./minio --address localhost:9000 server <your_export_dir>
 
 #### Start caddy server
 
-```sh $ ./caddy
+```sh
+$ ./caddy
 Activating privacy features... done.
 your.public.com:443
 your.public.com:80
