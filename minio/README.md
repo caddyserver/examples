@@ -24,3 +24,5 @@ Activating privacy features... done.
 your.public.com:443
 your.public.com:80
 ```
+
+You'll need to have caddy 0.9 installed for this to wirk
