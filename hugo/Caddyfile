@@ -1,0 +1,11 @@
+blog.mysite.tld:443 {
+        root /var/www/blog/public
+        tls email@domain.com
+        git {
+                path ../
+                repo https://github.com/<user-name>/<repo>
+                then hugo
+        }
+        hugo /var/www/blog
+        basicauth /admin <user-name> <password>
+}
