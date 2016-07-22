@@ -2,7 +2,8 @@
     # Document root
     root /home/httpd/public_html
 
-    # Fastcgi / <PHP-HOST>:<PHP-PORT> php
+    # You need php-fpm installed to pass php requests to.
+    # fastcgi / <PHP-HOST>:<PHP-PORT> php
     fastcgi / 127.0.0.1:9000 php
 
     # Converted htaccess rewrites
@@ -43,6 +44,7 @@
     }
 
     # Log Files
+    # Log file path is relative to workdir (/home/httpd/). 
     log logs/access.log {
       rotate {
         size      50
