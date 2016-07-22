@@ -1,0 +1,61 @@
+:80 {
+    # Document root
+    root /home/httpd/public_html
+
+    # Fastcgi / <PHP-HOST>:<PHP-PORT> php
+    fastcgi / 127.0.0.1:9000 php
+
+    # Converted htaccess rewrites
+    internal /forbidden
+
+    rewrite {
+        r /\.
+        to /forbidden
+    }
+    rewrite {
+        r /(COPYRIGHT|LICENSE|README|htaccess)\.txt
+        to /forbidden
+    }
+    rewrite {
+        r ^/site(-[^/]+)?/assets/(.*\.php|backups|cache|config|install|logs|sessions)
+        to /forbidden
+    }
+    rewrite {
+        r ^/site(-[^/]+)?/install
+        to /forbidden
+    }
+    rewrite {
+        r ^/(site(-[^/]+)?|wire)/(config(-dev)?|index\.config)\.php
+        to /forbidden
+    }
+    rewrite {
+        r ^/((site(-[^/]+)?|wire)/modules|wire/core)/.*\.(inc|module|php|tpl)
+        to /forbidden
+    }
+    rewrite {
+        r ^/(site(-[^/]+)?|wire)/templates(-admin)?/.*\.(inc|html?|php|tpl)
+        to /forbidden
+    }
+
+    # Global
+    rewrite {
+        to {path} {path}/ /index.php?it={path}&{query}
+    }
+
+    # Log Files
+    log logs/access.log {
+      rotate {
+        size      50
+        age       7
+        keep      5
+      }
+    }
+ 
+    errors {
+      log logs/error.log {
+        size      50
+        age       7
+        keep      5
+      }
+    }
+}
