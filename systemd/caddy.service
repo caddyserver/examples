@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 User=caddy
-LimitNOFILE=4096
+LimitNOFILE=8192
 ExecStart=/usr/local/bin/caddy -agree=true -conf=/etc/caddy/Caddyfile -pidfile=/var/run/caddy/caddy.pid -log=stderr
 PIDFile=/var/run/caddy/caddy.pid
 Restart=on-failure
