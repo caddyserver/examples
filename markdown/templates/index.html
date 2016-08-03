@@ -13,11 +13,13 @@
         </header>
 
         <main>
-            {{range .Links}}
-                {{if ne .URL "/index.md" }}
+            {{range .Files}}
+                {{if ne .Name "index.md" }}
                     <article>
-                        <h3><a href="{{.URL}}">{{.Title}}</a></h3>
-                        {{.Summary}}
+                        <h3><a href="{{.Name}}">{{.Name}}</a></h3>
+                            {{if not .IsDir }}
+                                {{.Summarize 15}}
+                            {{end}}
                     </article>
                 {{end}}
             {{end}}
