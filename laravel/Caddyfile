@@ -1,17 +1,7 @@
 example.com {
-
     root ./public
-    log ./storage/logs/caddy-access.log
-    errors ./storage/logs/caddy-error.log
-
-    fastcgi / 127.0.0.1:9000 php {
-        index index.php
-    }
-    
+    fastcgi / 127.0.0.1:9000 php
     rewrite {
-        r .*
-        ext /
-        to /index.php?{query}
+        to {path} {path}/ /index.php?{query}
     }
-
-}
+} 
