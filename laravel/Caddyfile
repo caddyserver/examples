@@ -4,4 +4,4 @@ example.com {
     rewrite {
         to {path} {path}/ /index.php?{query}
     }
-} 
+}
