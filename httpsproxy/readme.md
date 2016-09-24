@@ -1,8 +1,7 @@
-HTTPS an existing website
+Add HTTPS to an existing website
 ------------------------
 
-Setting up a very simple proxy to serve your existing site over **HTTPS** without changing your existing installation *(other than the port its served on)*.
+Setting up a very simple proxy to serve your existing site over **HTTPS** without changing your existing installation 
+*(other than the port its served on)*.
 
-The caddyfile shows how you can use caddy to listen on 80 & 443 and sit infront of another webserver such as apache which is serving on differnt port (3333 in caddyfile) .
-
-Instant HTTPS for an existing website without rewrite.
+The Caddyfile shows how you can use caddy to listen on ports 80 & 443 and sit in front of another webserver such as apache which is serving on a differnt port (3333 in this case; see Caddyfile).

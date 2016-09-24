@@ -1,4 +1,2 @@
-mysite.example.com {
-    
-    proxy / mysite.example.com:3333
-}
+mysite.example.com 
+proxy / mysite.example.com:3333
