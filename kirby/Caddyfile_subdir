@@ -1,0 +1,42 @@
+localhost:8080
+root <Dir Where Your WP Site PHP files are>
+gzip
+
+# Subdirectory of kirby is "kirby-test" in this example
+
+internal /kirby-test/forbidden
+
+# block content
+rewrite /kirby-test/content {
+  r /(.*).(txt|md|mdown)
+  to /kirby-test/error
+}
+
+# block all files in the site folder from being accessed directly
+rewrite /kirby-test/site {
+  to /kirby-test/error
+}
+
+# block all files in the kirby folder
+rewrite /kirby-test/kirby {
+  to /kirby-test/error
+}
+
+# site links
+rewrite /kirby-test {
+  if {path} not_match /panel/.*
+  to {uri} /kirby-test/index.php?{path}&{query}
+}
+
+# panel links
+rewrite /kirby-test/panel {
+  to {uri} /kirby-test/panel/index.php?{path}&{query}
+}
+
+# deny access to .htaccess files
+rewrite {
+  r /\.ht
+  to /kirby-test/forbidden
+}
+
+fastcgi /kirby-test/ /var/run/php-fpm/php-fpm.sock php
