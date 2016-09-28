@@ -9,12 +9,10 @@ rewrite {
   to /forbidden
 }
 rewrite /_media {
-  r /(.*)
-  to /lib/exe/fetch.php?media={1}
+  to /lib/exe/fetch.php?media={path}&{query}
 }
 rewrite /_detail {
-  r /(.*)
-  to /lib/exe/detail.php?media={1}
+  to /lib/exe/detail.php?media={path}&{query}
 }
 rewrite /_export {
   r /([^/]+)/(.*)
@@ -23,8 +21,7 @@ rewrite /_export {
 rewrite {
   if {path} not_match /lib/.*
   if {path} not_match /forbidden
-  r /(.*)
-  to /doku.php?id={1}&{query}
+  to {uri} /doku.php?id={path}&{query}
 }
 
 fastcgi / /var/run/php-fpm/php-fpm.sock php

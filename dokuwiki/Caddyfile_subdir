@@ -11,12 +11,10 @@ rewrite /wiki {
   to /wiki/forbidden
 }
 rewrite /wiki/_media {
-  r /(.*)
-  to /wiki/lib/exe/fetch.php?media={1}
+  to /wiki/lib/exe/fetch.php?media={path}&{query}
 }
 rewrite /wiki/_detail {
-  r /(.*)
-  to /wiki/lib/exe/detail.php?media={1}
+  to /wiki/lib/exe/detail.php?media={path}&{query}
 }
 rewrite /wiki/_export {
   r /([^/]+)/(.*)
@@ -25,8 +23,7 @@ rewrite /wiki/_export {
 rewrite /wiki {
   if {path} not_match /lib/.*
   if {path} not_match /forbidden
-  r /(.*)
-  to /wiki/doku.php?id={1}&{query}
+  to {uri} /wiki/doku.php?id={path}&{query}
 }
 
 fastcgi /wiki/ /var/run/php-fpm/php-fpm.sock php
