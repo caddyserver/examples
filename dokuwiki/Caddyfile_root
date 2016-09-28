@@ -1,0 +1,30 @@
+localhost:8080
+root <Dir Where Your WP Site PHP files are>
+gzip
+
+internal /forbidden
+
+rewrite {
+  r /(data/|conf/|bin/|inc/|install.php)
+  to /forbidden
+}
+rewrite /_media {
+  r /(.*)
+  to /lib/exe/fetch.php?media={1}
+}
+rewrite /_detail {
+  r /(.*)
+  to /lib/exe/detail.php?media={1}
+}
+rewrite /_export {
+  r /([^/]+)/(.*)
+  to /doku.php?do=export_{1}&id={2}
+}
+rewrite {
+  if {path} not_match /lib/.*
+  if {path} not_match /forbidden
+  r /(.*)
+  to /doku.php?id={1}&{query}
+}
+
+fastcgi / /var/run/php-fpm/php-fpm.sock php
