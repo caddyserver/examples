@@ -23,7 +23,8 @@ rewrite /wiki/_export {
 rewrite /wiki {
   if {path} not_match /lib/.*
   if {path} not_match /forbidden
-  to {uri} /wiki/doku.php?id={path}&{query}
+  r /(.*)
+  to {uri} /wiki/doku.php?id={1}&{query}
 }
 
 fastcgi /wiki/ /var/run/php-fpm/php-fpm.sock php

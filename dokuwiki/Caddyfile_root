@@ -21,7 +21,8 @@ rewrite /_export {
 rewrite {
   if {path} not_match /lib/.*
   if {path} not_match /forbidden
-  to {uri} /doku.php?id={path}&{query}
+  r /(.*)
+  to {uri} /doku.php?id={1}&{query}
 }
 
 fastcgi / /var/run/php-fpm/php-fpm.sock php
