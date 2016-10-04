@@ -7,6 +7,6 @@ rewrite / {
 }
 
 fastcgi / 127.0.0.1:9876 php
-root "C:\path\tolumen\public"
+root "C:/path/tolumen/public"
 
 
