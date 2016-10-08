@@ -1,0 +1,40 @@
+localhost:8080
+root <Dir Where Your WP Site PHP files are>
+gzip
+
+internal /forbidden
+
+# block content
+rewrite /content {
+  r /(.*).(txt|md|mdown)
+  to /error
+}
+
+# block all files in the site folder from being accessed directly
+rewrite /site {
+  to /error
+}
+
+# block all files in the kirby folder
+rewrite /kirby {
+  to /error
+}
+
+# site links
+rewrite {
+  if {path} not_match /panel/.*
+  to {uri} /index.php?{path}&{query}
+}
+
+# panel links
+rewrite /panel {
+  to {uri} /panel/index.php?{path}&{query}
+}
+
+# deny access to .htaccess files
+rewrite {
+  r /\.ht
+  to /forbidden
+}
+
+fastcgi / /var/run/php-fpm/php-fpm.sock php

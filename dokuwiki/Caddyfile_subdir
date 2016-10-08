@@ -1,0 +1,30 @@
+localhost:8080
+root <Dir Where Your WP Site PHP files are>
+gzip
+
+# Subdirectory of dokuwiki is "wiki" in this example
+
+internal /wiki/forbidden
+
+rewrite /wiki {
+  r /(data/|conf/|bin/|inc/|install.php)
+  to /wiki/forbidden
+}
+rewrite /wiki/_media {
+  to /wiki/lib/exe/fetch.php?media={path}&{query}
+}
+rewrite /wiki/_detail {
+  to /wiki/lib/exe/detail.php?media={path}&{query}
+}
+rewrite /wiki/_export {
+  r /([^/]+)/(.*)
+  to /wiki/doku.php?do=export_{1}&id={2}
+}
+rewrite /wiki {
+  if {path} not_match /lib/.*
+  if {path} not_match /forbidden
+  r /(.*)
+  to {uri} /wiki/doku.php?id={1}&{query}
+}
+
+fastcgi /wiki/ /var/run/php-fpm/php-fpm.sock php
