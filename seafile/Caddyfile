@@ -1,0 +1,11 @@
+example.com {
+    proxy / localhost:8000 {
+        transparent
+    }
+}
+
+example.com/seafhttp {
+    proxy / localhost:8082 {
+        transparent
+    }
+}
