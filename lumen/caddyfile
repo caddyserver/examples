@@ -1,12 +1,9 @@
-api.cookingisfun.ie 
+example.com
 
-#rewrite all requests to index.php
-rewrite / {
- r (.*)
- to /index.php
+#rewrite all for files and directories that do not exist to index.php
+rewrite {
+  to {path} {path}/  /index.php
 }
 
 fastcgi / 127.0.0.1:9876 php
 root "C:\path\tolumen\public"
-
-
