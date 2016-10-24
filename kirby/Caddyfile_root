@@ -28,6 +28,7 @@ rewrite {
 
 # panel links
 rewrite /panel {
+  if {path} not_match /panel/assets/.*
   to {uri} /panel/index.php?{path}&{query}
 }
 

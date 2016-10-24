@@ -30,6 +30,7 @@ rewrite /kirby-test {
 
 # panel links
 rewrite /kirby-test/panel {
+  if {path} not_match /panel/assets/.*
   to {uri} /kirby-test/panel/index.php?{path}&{query}
 }
 
