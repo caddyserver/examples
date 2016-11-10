@@ -1,0 +1,43 @@
+my-nextcloud-site.com {
+
+	root   /var/www/nextcloud
+	log    /var/log/nextcloud_access.log
+	errors /var/log/nextcloud_errors.log
+
+	fastcgi / 127.0.0.1:9000 php {
+		env PATH /bin
+	}
+
+	rewrite {
+		r ^/index.php/.*$
+		to /index.php?{query}
+	}
+
+	# client support (e.g. os x calendar / contacts)
+	redir /.well-known/carddav /remote.php/carddav 301
+	redir /.well-known/caldav /remote.php/caldav 301
+
+	# remove trailing / as it causes errors with php-fpm
+	rewrite {
+		r ^/remote.php/(webdav|caldav|carddav|dav)(\/?)$
+		to /remote.php/{1}
+	}
+
+	rewrite {
+		r ^/remote.php/(webdav|caldav|carddav|dav)/(.+?)(\/?)$
+		to /remote.php/{1}/{2}
+	}
+
+	# .htaccess / data / config / ... shouldn't be accessible from outside
+	status 403 {
+		/.htacces
+		/data
+		/config
+		/db_structure
+		/.xml
+		/README
+	}
+
+	header / Strict-Transport-Security "max-age=31536000;"
+
+}
