@@ -1,9 +1,36 @@
 example.com {
     root /path/to/site
     fastcgi / 127.0.0.1:9000 php
+
+    status 403 /forbidden
+
+    # Begin - Security
+    # deny all direct access for these folders
     rewrite {
-      regexp .*
-      ext    /
-      to     /index.php?_url={uri}
-   }
+        if {path} match /(.git|cache|bin|logs|backups|tests)/.*$
+        to /forbidden
+    }
+    # deny running scripts inside core system folders
+    rewrite {
+        if {path} match /(system|vendor)/.*\.(txt|xml|md|html|yaml|php|pl|py|cgi|twig|sh|bat)$
+        to /forbidden
+    }
+    # deny running scripts inside user folder
+    rewrite {
+        if {path} match /user/.*\.(txt|md|yaml|php|pl|py|cgi|twig|sh|bat)$
+        to /forbidden
+    }
+    # deny access to specific files in the root folder
+    rewrite {
+        if {path} match /(LICENSE.txt|composer.lock|composer.json|nginx.conf|web.config|htaccess.txt|\.htaccess)
+        to /forbidden
+    }
+    ## End - Security
+
+    # global rewrite should come last.
+    rewrite {
+        regexp .*
+        ext    /
+        to     /index.php?_url={uri}
+    }
 }
