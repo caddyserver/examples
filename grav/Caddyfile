@@ -29,8 +29,6 @@ example.com {
 
     # global rewrite should come last.
     rewrite {
-        regexp .*
-        ext    /
-        to     /index.php?_url={uri}
+        to  {path} {path}/ /index.php?_url={uri}
     }
 }
