@@ -14,6 +14,8 @@ User=username
 Group=username
 ExecStart=/usr/local/bin/caddy -conf=/home/username/caddy/Caddyfile -agree -email="firstname.lastname@example.com"
 Restart=on-failure
+StartLimitInterval=86400
+StartLimitBurst=5
 RestartSec=10
 ExecReload=/bin/kill -USR1 $MAINPID
 ; limit the number of file descriptors, see `man systemd.exec` for more limit settings
