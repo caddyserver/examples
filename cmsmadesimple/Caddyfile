@@ -1,0 +1,11 @@
+example.com {
+
+	root /home/username/caddy/example.com/public
+
+	fastcgi / /var/run/php/php7.0-fpm.sock php
+
+	rewrite {
+		to {path} {path}/ /index.php?page={uri_escaped}
+	}
+
+}
