@@ -1,0 +1,9 @@
+:2015 #You can make it :80 and then add tls off to avoid errors and serve to http://localhost
+root /home/<user-name>/android_guides
+ext .md #The cliffnotes are markdown formatted
+git {
+    root /
+    repo https://github.com/codepath/android_guides.wiki.git
+}
+markdown / #Render the markdown on the fly
+search #Thou shalt not feel lost
