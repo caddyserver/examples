@@ -1,0 +1,27 @@
+DOMAIN {
+    root /PATH/TO/ROOT-DIR
+    fastcgi / /PATH/TO/FPM-SOCKET php
+    internal /PATH/TO/X-ACCELERATION-URL/FOR/FILE/DOWNLOADS
+    status 404 {
+        /autoload.php
+        /composer.json
+        /composer.lock
+        /composer.phar
+        /config.php
+        /files/documents/
+        /var/
+        /media/temp/
+        /README.md
+        /recovery/
+        /.
+    }
+    rewrite /recovery/install/ {
+        to /recovery/install/index.php
+    }
+    rewrite /recovery/update/ {
+        to /recovery/update/index.php
+    }    
+    rewrite / {
+        to /maintenance.html {path} {path}/ /shopware.php
+    }
+}
