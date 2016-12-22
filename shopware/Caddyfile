@@ -1,22 +1,4 @@
 DOMAIN {
-    gzip {
-        level 6
-    }
-    expires {
-        match .css$ 1m
-        match .js$ 1m
-        match .png$ 1m
-        match .jpg$ 1m
-        match .gif$ 1m
-        match .ico$ 1m
-        match .woff$ 1m
-        match .woff2$ 1m
-        match .ttf$ 1m
-        match .eof$ 1m
-        match .pdf$ 1s
-        match .txt$ 1s
-        match .html$ 1s
-    }
     root /PATH/TO/ROOT-DIR
     fastcgi / /PATH/TO/FPM-SOCKET php
     internal /PATH/TO/X-ACCELERATION-URL/FOR/FILE/DOWNLOADS
