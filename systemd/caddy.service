@@ -5,6 +5,8 @@ After=network.target
 
 [Service]
 User=caddy
+StartLimitInterval=86400
+StartLimitBurst=5
 LimitNOFILE=8192
 ExecStart=/usr/local/bin/caddy -agree=true -conf=/etc/caddy/Caddyfile -pidfile=/var/run/caddy/caddy.pid -log=stderr
 PIDFile=/var/run/caddy/caddy.pid
