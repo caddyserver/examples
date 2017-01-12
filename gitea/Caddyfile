@@ -1,0 +1,3 @@
+mygitea.com {
+    proxy / localhost:3000
+}
