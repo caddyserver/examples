@@ -1,0 +1,5 @@
+myheadphones.com {
+    proxy / localhost:8181 {
+        transparent
+    }
+}
