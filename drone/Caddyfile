@@ -1,0 +1,9 @@
+example.com {
+  # please comment the timeouts configures
+  # if caddy server version under 0.9.5
+  timeouts none
+  proxy / localhost:8000 {
+    websocket
+    transparent
+  }
+}
