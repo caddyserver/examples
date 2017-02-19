@@ -6,6 +6,7 @@ The caddyfile includes the line to start a php fastcgi server on startup
 
 >  startup c:\path\to\php\php-cgi.exe -b 6545 &
 
-This starts a fastcgi server on localhost port 6545.  The & ensures that the command doesnt block caddy from continuing
+This starts a fastcgi server on localhost port 6545.  The & ensures that the command doesn't block caddy from continuing.
 
-Combine this with some scripts to restart caddy and the php fastcgi on regular intervals and you have a very robust setup for windows.
+The php-cgi process will be shutdown automatically when caddy stops.
+
