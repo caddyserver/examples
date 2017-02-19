@@ -2,7 +2,7 @@
 
 Lots of examples are available for running php using fast-cgi on linux, this example shows how to do it on Windows.
 
-The caddyfile includes the line to start a php fastcgi server on startup
+The Caddyfile includes the line to start a php fastcgi server on startup
 
 >  startup c:\path\to\php\php-cgi.exe -b 6545 &
 
