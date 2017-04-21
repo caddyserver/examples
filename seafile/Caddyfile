@@ -2,10 +2,16 @@ example.com {
     proxy / localhost:8000 {
         transparent
     }
+    gzip
 }
-
 example.com/seafhttp {
     proxy / localhost:8082 {
+        without /seafhttp
         transparent
     }
+    gzip
+}
+example.com/media {
+    root /home/user/haiwen/seafile-server-latest/seahub/media
+    gzip
 }
