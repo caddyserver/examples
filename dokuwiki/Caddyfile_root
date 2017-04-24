@@ -2,6 +2,10 @@ localhost:8080
 root <Dir Where Your WP Site PHP files are>
 gzip
 
+fastcgi / /var/run/php-fpm/php-fpm.sock php {
+  index doku.php
+}
+
 internal /forbidden
 
 rewrite {
@@ -24,5 +28,3 @@ rewrite {
   r /(.*)
   to {uri} /doku.php?id={1}&{query}
 }
-
-fastcgi / /var/run/php-fpm/php-fpm.sock php

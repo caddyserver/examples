@@ -3,6 +3,9 @@ root <Dir Where Your WP Site PHP files are>
 gzip
 
 # Subdirectory of dokuwiki is "wiki" in this example
+fastcgi /wiki/ /var/run/php-fpm/php-fpm.sock php {
+  index doku.php
+}
 
 internal /wiki/forbidden
 
@@ -26,5 +29,3 @@ rewrite /wiki {
   r /(.*)
   to {uri} /wiki/doku.php?id={1}&{query}
 }
-
-fastcgi /wiki/ /var/run/php-fpm/php-fpm.sock php
