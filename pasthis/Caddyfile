@@ -3,30 +3,29 @@
 # - https://caddyserver.com/download/linux/amd64
 # - https://caddyserver.com/download/linux/amd64/signature
 
-
-# TLS - defaults are sane
-tls admin@paste.yourdomain.net {
-        must_staple
-}
-
-
-# Various headers
-header / {
-        Strict-Transport-Security "max-age=31560000;includeSubDomains;preload"
-        X-Content-Type-Options "nosniff"
-        X-Frame-Options "deny"
-        X-XSS-Protection "1; mode=block"
-        Content-Security-Policy "default-src 'self'; frame-ancestors 'self'"
-        Referrer-Policy "strict-origin-when-cross-origin"
-}
-
-
-# PHP
-fastcgi / unix:/var/run/php5-fpm.sock php
-
-
-# Actual config
 https://paste.yourdomain.net {
+
+	# TLS - defaults are sane
+	tls admin@paste.yourdomain.net {
+        	must_staple
+	}
+	
+	
+	# Various headers
+	header / {
+        	Strict-Transport-Security "max-age=31560000;includeSubDomains;preload"
+        	X-Content-Type-Options "nosniff"
+        	X-Frame-Options "deny"
+        	X-XSS-Protection "1; mode=block"
+        	Content-Security-Policy "default-src 'self'; frame-ancestors 'self'"
+        	Referrer-Policy "strict-origin-when-cross-origin"
+	}
+	
+	
+	# PHP
+	fastcgi / unix:/var/run/php5-fpm.sock php
+
+
 	root /var/www/pasthis
 	rewrite / {
 		regexp ([a-zA-Z0-9]{6}(@raw)?)$
@@ -42,10 +41,3 @@ https://paste.yourdomain.net {
 		rotate_size 100
 	}
 }
-
-
-# Redirect to HTTPS
-http://paste.yourdomain.net {
-	redir https://paste.yourdomain.net{uri}
-}
-
