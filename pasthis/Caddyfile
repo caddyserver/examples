@@ -5,39 +5,14 @@
 
 https://paste.yourdomain.net {
 
-	# TLS - defaults are sane
-	tls admin@paste.yourdomain.net {
-        	must_staple
-	}
-	
-	
-	# Various headers
-	header / {
-        	Strict-Transport-Security "max-age=31560000;includeSubDomains;preload"
-        	X-Content-Type-Options "nosniff"
-        	X-Frame-Options "deny"
-        	X-XSS-Protection "1; mode=block"
-        	Content-Security-Policy "default-src 'self'; frame-ancestors 'self'"
-        	Referrer-Policy "strict-origin-when-cross-origin"
-	}
-	
-	
-	# PHP
 	fastcgi / unix:/var/run/php5-fpm.sock php
 
-
 	root /var/www/pasthis
+
 	rewrite / {
 		regexp ([a-zA-Z0-9]{6}(@raw)?)$
 		to /index.php?p={1}
 	}
 
 	internal pasthis.db
-
-	log / "/var/log/caddy/paste.yourdomain.net.access.log" "{>Referer} {>User-Agent} - {remote} - [{when}] {method} {uri} {proto} {status} {size}" {
-		rotate_size 100
-	}
-	errors "/var/log/caddy/paste.yourdomain.net.errors.log" {
-		rotate_size 100
-	}
 }
