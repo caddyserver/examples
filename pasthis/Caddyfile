@@ -1,0 +1,18 @@
+# Pasthis Caddy configuration
+# Requires no plugins
+# - https://caddyserver.com/download/linux/amd64
+# - https://caddyserver.com/download/linux/amd64/signature
+
+https://paste.yourdomain.net {
+
+	fastcgi / unix:/var/run/php5-fpm.sock php
+
+	root /var/www/pasthis
+
+	rewrite / {
+		regexp ([a-zA-Z0-9]{6}(@raw)?)$
+		to /index.php?p={1}
+	}
+
+	internal pasthis.db
+}
