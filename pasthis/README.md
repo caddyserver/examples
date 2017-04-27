@@ -1,4 +1,4 @@
-# Drone
+# Pasthis
 
 This is an example configuration on how to use [Pasthis](https://github.com/moulecorp/pasthis) with Caddy.
 
