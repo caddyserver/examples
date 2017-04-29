@@ -1,10 +1,6 @@
 https://gitlab.example.com {
-    log git.access.log {
-        rotate
-    }
-
-    errors {
-        log git.errors.log
+    log git.access.log 
+    errors git.errors.log {
         404 /opt/gitlab/embedded/service/gitlab-rails/public/404.html
         422 /opt/gitlab/embedded/service/gitlab-rails/public/422.html
         500 /opt/gitlab/embedded/service/gitlab-rails/public/500.html
@@ -13,10 +9,7 @@ https://gitlab.example.com {
 
     proxy / http://127.0.0.1:8181 {
         fail_timeout 300s
-
-        proxy_header Host {host}
-        proxy_header X-Real-IP {remote}
-        proxy_header X-Forwarded-Proto {scheme}
-        proxy_header X-Forwarded-Ssl on
+        transparent
+        header_upstream X-Forwarded-Ssl on
     }
 }
