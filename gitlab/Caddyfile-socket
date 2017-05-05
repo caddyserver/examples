@@ -1,0 +1,24 @@
+https://dev.sth.se.k0nsl.org {
+
+    log git.access.log {
+        rotate_size 50 # Rotate after 50 MB
+        rotate_age  80 # Keep rotated files for 90 days	
+        rotate_keep 15 # Keep at most 20 log files
+    }
+    errors {
+        404 /opt/gitlab/embedded/service/gitlab-rails/public/404.html
+        422 /opt/gitlab/embedded/service/gitlab-rails/public/422.html
+        500 /opt/gitlab/embedded/service/gitlab-rails/public/500.html
+        502 /opt/gitlab/embedded/service/gitlab-rails/public/502.html
+    }
+
+    proxy / unix:/home/git/gitlab/tmp/sockets/gitlab.socket {
+        fail_timeout 300s
+
+	header_upstream Host {host}
+	header_upstream X-Real-IP {remote}
+	header_upstream X-Forwarded-For {remote}
+	header_upstream X-Forwarded-Proto {scheme}
+  header_upstream X-Forwarded-Ssl on
+    }
+}
