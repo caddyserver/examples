@@ -2,6 +2,10 @@ your.public.com
 
 proxy / localhost:9000 {
     transparent
+    timeouts {
+        read none
+        write none
+    }
 }
 
 
