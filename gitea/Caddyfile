@@ -1,3 +1,5 @@
 mygitea.com {
-    proxy / localhost:3000
+  # Please disable timeout if error: RPC failed; curl 18 transfer closed with outstanding read data remaining
+  # timeout 0
+  proxy / localhost:3000
 }
