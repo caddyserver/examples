@@ -1,6 +1,8 @@
 DOMAIN {
     root /PATH/TO/ROOT-DIR
-    fastcgi / /PATH/TO/FPM-SOCKET php
+    fastcgi / /PATH/TO/FPM-SOCKET php {
+        index shopware.php
+    }
     internal /PATH/TO/X-ACCELERATION-URL/FOR/FILE/DOWNLOADS
     status 404 {
         /autoload.php
