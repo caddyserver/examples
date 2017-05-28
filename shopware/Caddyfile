@@ -1,29 +1,75 @@
 DOMAIN {
-    root /PATH/TO/ROOT-DIR
-    fastcgi / /PATH/TO/FPM-SOCKET php {
-        index shopware.php
+    root /PATH/TO/SHOPWARE
+
+    fastcgi / /PATH/TO/PHP-FPM php {
+        index shopware.php index.php
     }
-    internal /PATH/TO/X-ACCELERATION-URL/FOR/FILE/DOWNLOADS
+
     status 404 {
         /autoload.php
-        /composer.json
-        /composer.lock
-        /composer.phar
+        /composer.
         /config.php
+        /eula.txt
+        /eula_
+        /CONTRIBUTING.md
+        /UPGRADE-
+        /README.md
+    }
+
+    status 403 {
         /files/documents/
         /var/
         /media/temp/
-        /README.md
-        /recovery/
         /.
+        /forbidden
     }
+
+    rewrite {
+        if {file} ends_with .tpl
+        if {file} ends_with .yml
+        if {file} ends_with .ini
+        if {file} ends_with .log
+        if_op or
+        to /forbidden
+    }
+
+    ## Shopware Install / Update
     rewrite /recovery/install/ {
-        to /recovery/install/index.php
+        to {path} /recovery/install/index.php?{query}
     }
+
     rewrite /recovery/update/ {
-        to /recovery/update/index.php
-    }    
+        to {path} /recovery/update/index.php?{query}
+    }
+
+    # Block direct access to ESDs, but allow the follwing download options:
+    #  * 'PHP' (slow)
+    #  * 'X-Accel' (optimized)
+    # Also see http://wiki.shopware.com/ESD_detail_1116.html#Ab_Shopware_4.2.2
+    internal /files/552211cce724117c3178e3d22bec532ec/
+
+    ## backend media support
+    rewrite {
+        r ^/backend/media/(.*)
+        to /media/{1} /shopware.php?module=frontend&controller=Media&action=fallback
+    }
+
+    ## XML Sitemap support.
+    rewrite /sitemap.xml {path} /shopware.php
+
+    ## XML SitemapMobile support.
+    rewrite /sitemapMobile.xml {path} /shopware.php
+
+    ## robots.txt support
+    rewrite /robots.txt {path} /shopware.php
+
+    ## All static files will be served directly.
+    rewrite {
+        r ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|html)$
+        to {path} /shopware.php?module=frontend&controller=Media&action=fallback
+    }
+
     rewrite / {
-        to /maintenance.html {path} {path}/ /shopware.php
+        to {path} {path}/ /shopware.php?{query}
     }
 }
