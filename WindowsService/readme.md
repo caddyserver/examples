@@ -33,6 +33,7 @@ caddy -service stop [-name optionalName]
 
 ```
 caddy -service restart [-name optionalName] 
+```
 
 ### Uninstall a Caddy service:
 
