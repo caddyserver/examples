@@ -1,8 +1,9 @@
 localhost:8080
-root <Dir Where Your WP Site PHP files are>
+
+root <directory where your WP site PHP files are>
 gzip
 fastcgi / 127.0.0.1:9000 php
 rewrite {
-    if {path} not_match ^\/wp-admin
-    to {path} {path}/ /index.php?_url={uri}
+	if {path} not_match ^\/wp-admin
+	to {path} {path}/ /index.php?{query}
 }
