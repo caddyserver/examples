@@ -1,0 +1,36 @@
+# Change this to your web site URL.
+https://localhost:8080
+
+# Set the document root of the site.
+# e.g /var/www/example.com for UNIX/Mac systems.
+root W:\localhost\d7
+
+# Set the path to the php-fpm process.
+fastcgi / 127.0.0.1:9000 php
+
+# This rewrite it to prevent access dot files and folders such
+# as .htaccess, .git, etc.
+rewrite {
+  if {path} starts_with .
+  if {path} not_starts_with .well-known
+  to error/index.html
+}
+
+# This rewrite it to prevent access to raw files with certain extensions.
+rewrite {
+  if {path} match .(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist|engine|inc|info|install|make|module|profile|test|po|sh|sql|theme|tpl|tpl.php|xtmpl|sw|bak|orig|save)$
+  to error/index.html
+}
+status 404 error/index.html
+
+# Main rewrite to route non-existent files to index.php file.
+rewrite {
+  if {file} not favicon.ico
+  to {path} {path}/ /index.php?{path}&{query}
+}
+
+header / {
+  X-Content-Type-Options nosniff
+}
+
+gzip
