@@ -10,10 +10,7 @@ https://gitlab.domain.tld {
     proxy / unix:/home/git/gitlab/tmp/sockets/gitlab.socket {
         fail_timeout 300s
 
-	header_upstream Host {host}
-	header_upstream X-Real-IP {remote}
-	header_upstream X-Forwarded-For {remote}
-	header_upstream X-Forwarded-Proto {scheme}
+	transparent
 	header_upstream X-Forwarded-Ssl on
     }
 }
