@@ -11,6 +11,5 @@ https://gitlab.domain.tld {
         fail_timeout 300s
 
 	transparent
-	header_upstream X-Forwarded-Ssl on
     }
 }
