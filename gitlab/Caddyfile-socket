@@ -1,0 +1,15 @@
+https://gitlab.domain.tld {
+
+    errors {
+        404 /opt/gitlab/embedded/service/gitlab-rails/public/404.html
+        422 /opt/gitlab/embedded/service/gitlab-rails/public/422.html
+        500 /opt/gitlab/embedded/service/gitlab-rails/public/500.html
+        502 /opt/gitlab/embedded/service/gitlab-rails/public/502.html
+    }
+
+    proxy / unix:/home/git/gitlab/tmp/sockets/gitlab.socket {
+        fail_timeout 300s
+
+	transparent
+    }
+}
