@@ -1,6 +1,6 @@
 discourse.yoursite.com
 
-timeouts off
+timeouts none
 proxy / localhost:8080 {
 	transparent
 }
