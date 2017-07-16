@@ -14,8 +14,3 @@ For FastCGI it is recommended to use network socket instead of
 filesystem one, PHP can be unpredictable about filesystem socket.
 See [documentation](https://caddyserver.com/docs/fastcgi) on how to
 specify FastCGI socket.
-
-It is highly recommended to add ``tls`` parameter to get Friendica
-working over HTTPS, because some Friendica servers might block
-instances without HTTPS. See [documentation](https://caddyserver.com/docs/tls)
-for configuration parameters.
