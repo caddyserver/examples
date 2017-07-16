@@ -16,5 +16,6 @@ See [documentation](https://caddyserver.com/docs/fastcgi) on how to
 specify FastCGI socket.
 
 It is highly recommended to add ``tls`` parameter to get Friendica
-working over HTTPS. See [documentation](https://caddyserver.com/docs/tls)
+working over HTTPS, because some Friendica servers might block
+instances without HTTPS. See [documentation](https://caddyserver.com/docs/tls)
 for configuration parameters.
