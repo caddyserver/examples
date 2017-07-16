@@ -1,0 +1,14 @@
+server_name {
+	root /home/friendica/public
+	log    /home/friendica/log/access.log
+	errors /home/friendica/log/errors.log
+
+	fastcgi / 127.0.0.1:2000 php {
+		env PATH /bin
+	}
+
+	rewrite {
+		r .*
+		to /{uri} /index.php?q={path}&{query}
+	}
+}
