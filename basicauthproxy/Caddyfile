@@ -9,7 +9,7 @@ your.public.com
 basicauth / username password
 
 # Proxy to localhost port 8080
-# If multiple backends are used, just specify them comma separated e.g.
-# proxy / localhost:8080, localhost:8081, 192.168.99.100:8083
+# If multiple backends are used, just specify them separated by space
+# proxy / localhost:8080 localhost:8081 192.168.99.100:8083
 
 proxy / localhost:8080
