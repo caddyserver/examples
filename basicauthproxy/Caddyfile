@@ -1,0 +1,15 @@
+# Example explains how to setup a basicauth proxy to a webserver
+
+your.public.com
+
+# If you want to use more than one user, just append more rows with the next user
+# basicauth / username1 password1
+# basicauth / username2 password2
+
+basicauth / username password
+
+# Proxy to localhost port 8080
+# If multiple backends are used, just specify them comma separated e.g.
+# proxy / localhost:8080, localhost:8081, 192.168.99.100:8083
+
+proxy / localhost:8080
