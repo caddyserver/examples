@@ -6,9 +6,9 @@ In this document you will learn on how to set up Caddy server as a proxy in fron
 
 #### Prerequisites
 
-* You have Minio Client installed, if not follow [mc install instructions](https://docs.minio.io/docs/minio-client-quick-start-guide)
+* You have Minio Client installed, if not follow [Minio Client install instructions](https://docs.minio.io/docs/minio-client-quick-start-guide)
 * You have a Minio Server configured & running, if not follow [Minio Server install instructions](https://docs.minio.io/docs/minio)
-* You have Caddy server inatalled, if not follow [Getting Started with Caddy](https://caddyserver.com/docs/getting-started)
+* You have Caddy server installed, if not follow [Getting Started with Caddy](https://caddyserver.com/docs/getting-started)
 
 #### Start Minio server
 
