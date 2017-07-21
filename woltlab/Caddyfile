@@ -1,0 +1,8 @@
+localhost:8080
+
+root <directory where your WoltLab site PHP files are>
+gzip
+fastcgi / 127.0.0.1:9000 php
+rewrite {
+    to {path} {path}/ /index.php?{path}&{query}
+}
