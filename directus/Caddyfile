@@ -1,12 +1,13 @@
 # change to the hostname you want to bind to
 localhost:3000
 
-# change to correct document root
+# change to the correct document root
 # in this example config directus is assumed to be root
 # you may need to adjust rewrites according to your own setup
 root /var/www/directus
 
-# Set the path to the php-fpm process.
+# Set the PHP FPM host and port
+# Optionally also change the path if you don't want to run PHP everywhere
 fastcgi / 127.0.0.1:9000 php
 
 # rewrites for the API routes
