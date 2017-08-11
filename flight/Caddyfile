@@ -1,0 +1,8 @@
+:80 {
+        root /var/www
+        gzip
+        fastcgi / /run/php/php7.0-fpm.sock php
+        rewrite {
+                to /index.php?_url={uri}
+        }
+}
