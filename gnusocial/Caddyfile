@@ -1,15 +1,13 @@
-example.com www.example.com {
+example.com www.example.com
 
 # Your fastcgi for php-fpm will be different if you are listening on a socket
 # or port. Here Are examples for both methods.
+# Uncomment the one you need.
 # fastcgi / 127.0.0.1:9000 php
 # fastcgi / /var/run/php-fpm/php-fpm.sock php
-gzip
-tls <your email address>
 
 rewrite {
     to {path} {path}/ /index.php?p={path}
-    }
-
-root <Path to your installation, e.g. /var/www/html/gnusocial>
 }
+
+root /var/www/html/gnusocial
