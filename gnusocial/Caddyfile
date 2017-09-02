@@ -1,0 +1,13 @@
+example.com www.example.com
+
+# Your fastcgi for php-fpm will be different if you are listening on a socket
+# or port. Here Are examples for both methods.
+# Uncomment the one you need.
+# fastcgi / 127.0.0.1:9000 php
+# fastcgi / /var/run/php-fpm/php-fpm.sock php
+
+rewrite {
+    to {path} {path}/ /index.php?p={path}
+}
+
+root /var/www/html/gnusocial
