@@ -2,13 +2,13 @@
 https://localhost:8080
 
 # Set the document root of the site.
-# e.g /var/www/example.com for UNIX/Mac systems.
+# e.g. /var/www/example.com for UNIX/Mac systems.
 root W:\localhost\d7
 
 # Set the path to the php-fpm process.
 fastcgi / 127.0.0.1:9000 php
 
-# This rewrite it to prevent access dot files and folders such
+# This rewrite is to prevent access to dot files and folders such
 # as .htaccess, .git, etc.
 rewrite {
   if {path} starts_with .
@@ -16,7 +16,7 @@ rewrite {
   to error/index.html
 }
 
-# This rewrite it to prevent access to raw files with certain extensions.
+# This rewrite is to prevent access to raw files with certain extensions.
 rewrite {
   if {path} match .(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist|engine|inc|info|install|make|module|profile|test|po|sh|sql|theme|tpl|tpl.php|xtmpl|sw|bak|orig|save)$
   to error/index.html
@@ -29,8 +29,12 @@ rewrite {
   to {path} {path}/ /index.php?{path}&{query}
 }
 
+# Security-HTTP-Header to reduce exposure to drive-by downloads 
+# and the risks of clever-named user uploaded content that could be 
+# treated as a different content-type (e.g. as executable).
 header / {
   X-Content-Type-Options nosniff
 }
 
+# Compress the transmitted data
 gzip
