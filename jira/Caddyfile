@@ -1,0 +1,6 @@
+jira.hostname.tls {
+    proxy / yourip:8080 {
+        websocket
+        transparent
+    }
+}
