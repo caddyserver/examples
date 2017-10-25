@@ -1,0 +1,8 @@
+example.com {
+    root /var/www/chevereto
+    fastcgi / /var/run/php/php7.0-fpm.sock php
+
+    rewrite {
+        to {path} {path}/ /index.php?{query}
+    }
+}
