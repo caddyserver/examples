@@ -7,6 +7,13 @@ my-nextcloud-site.com {
 	fastcgi / 127.0.0.1:9000 php {
 		env PATH /bin
 	}
+	
+	# checks for images
+        rewrite {
+	        ext .svg .gif .png .html .ttf .woff .ico .jpg .jpeg
+		r ^/index.php/(.+)$
+		to /{1} /index.php?{1}
+	}
 
 	rewrite {
 		r ^/index.php/.*$
