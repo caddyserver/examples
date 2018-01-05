@@ -1,0 +1,8 @@
+example.com {
+	gzip
+	root /var/www/example.com/www
+	proxy / http://127.0.0.1:8360 {
+		transparent
+		except static
+	}
+}
