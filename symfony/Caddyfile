@@ -1,0 +1,11 @@
+example.com {
+    root /var/www/symfony/
+
+    rewrite {
+        to {path} /app.php?{query}
+    }
+
+    fastcgi / unix:/var/run/php/php7.0-fpm.sock php {
+        index app.php
+    }
+}
