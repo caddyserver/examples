@@ -1,0 +1,11 @@
+forum.example.com {
+    root /var/www/vanilla/
+
+    fastcgi / /run/php/php7.0-fpm.sock php {
+        index index.php
+    }
+
+    rewrite {
+        to {path} /index.php?p={path}&{query}
+    }
+}
