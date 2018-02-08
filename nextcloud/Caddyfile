@@ -36,8 +36,13 @@ my-nextcloud-site.com {
 	}
 
 	rewrite {
-		r ^/public.php/(.+?)(\/?)$
-		to /public.php/(.+?)(\/?)$
+		r ^/public.php/(dav|webdav|caldav|carddav)(\/?)$
+		to /public.php/{1}
+	}
+
+	rewrite {
+		r ^/public.php/(dav|webdav|caldav|carddav)/(.+)(\/?)$
+		to /public.php/{1}/{2}
 	}
 
 	# .htaccess / data / config / ... shouldn't be accessible from outside
