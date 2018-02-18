@@ -1,0 +1,69 @@
+ampache.domain.com {
+    root /home/caddy/web/ampache.domain.com
+
+    log /home/caddy/web/log/ampache.domain.com.access.log {
+        rotate_size 100  # Rotate after 100 MB
+        rotate_age  14   # Keep log files for 14 days
+        rotate_keep 10   # keep maximum of 10 lof files
+    }
+
+    errors /home/caddy/web/log/ampache.domain.com.error.log
+
+    index index.php
+
+    gzip
+
+    fastcgi / unix:/var/run/php/php7.0-fpm.sock php
+
+    # Rewrite rules for Subsonic backend
+    rewrite /rest {
+        r ^/rest/(.*).view$
+        to {path}/ /rest/index.php?action={1}
+    }
+    rewrite /rest/fake {
+        r ^/rest/fake/(.+)$
+        to {path}/ /play/{1}
+    }
+
+    # Rewrite rule for Channels
+    rewrite /channel {
+        r ^/channel/([0-9]+)/(.*)$
+        to /channel/index.php?channel={1&}target={2} last;
+    }
+
+    # Beautiful URL Rewriting
+    rewrite /play/ssid {
+        r ^/play/ssid/(\w+)/type/(\w+)/oid/([0-9]+)/uid/([0-9]+)/name/(.*)$
+        to /play/index.php?ssid={1}&type={2}&oid={3}&uid={4}&name={5}
+
+        r ^/play/ssid/(\w+)/type/(\w+)/oid/([0-9]+)/uid/([0-9]+)/client/(.*)/noscrobble/([0-1])/name/(.*)$
+        to /play/index.php?ssid={1}&type={2}&oid={3}&uid={4}&client={5}&noscrobble={6}&name={7}
+
+        r ^/play/ssid/(.*)/type/(.*)/oid/([0-9]+)/uid/([0-9]+)/client/(.*)/noscrobble/([0-1])/player/(.*)/name/(.*)$
+        to /play/index.php?ssid={1}&type={2}&oid={3}&uid={4}&client={5}&noscrobble={6}&player={7}&name={8}
+
+        r ^/play/ssid/(.*)/type/(.*)/oid/([0-9]+)/uid/([0-9]+)/client/(.*)/noscrobble/([0-1])/transcode_to/(w+)/bitrate/([0-9]+)/player/(.*)/name/(.*)$
+        to /play/index.php?ssid={1}&type={2}&oid={3}&uid={4}&client={5&}noscrobble={6}&transcode_to={7}&bitrate={8}&player={9}&name={10}
+
+        r ^/play/ssid/(.*)/type/(.*)/oid/([0-9]+)/uid/([0-9]+)/action/(.*)/name/(.*)$
+        to /play/index.php?ssid={1}&type={2}&oid={3}&uid={4}action={5}&name={6}
+    }
+
+    # the following line was needed for me to get downloads of single songs to work
+    rewrite /play {
+        r ^/play/art/([^/]+)/([^/]+)/([0-9]+)/thumb([0-9]*)\.([a-z]+)$
+        to /image.php?object_type={2}&object_id={3}&auth={1}
+
+        r ^/([^/]+)/([^/]+)(/.*)?$
+        to /play/{3}?{1}={2}
+
+        r ^/(/[^/]+|[^/]+/|/?)$
+        to /play/index.php
+    }
+
+    proxy /ws 127.0.0.1:8100 {
+        transparent
+        websocket
+        without /ws
+    }
+}
