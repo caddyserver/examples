@@ -1,16 +1,8 @@
 example.com {
-
- 
-  proxy / localhost:8888 {
-    header_upstream X-Real-IP  {remote}
-    header_upstream Host {host}
-    websocket
-  }
-
-    rewrite {
-        r "~* /(api/kernels/[^/]+/(channels|iopub|shell|stdin)|terminals/websocket)/?"
-        to /proxy/{uri}
+    proxy / localhost:10180 {
+        proxy_header Host {host}
+        proxy_header X-Real-IP {remote}
+        proxy_header X-Forwarded-Proto {scheme}
+        websocket
     }
-
-
 }
