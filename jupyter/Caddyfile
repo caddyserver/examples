@@ -1,8 +1,8 @@
 example.com {
-    proxy / localhost:8888 {
-        proxy_header Host {host}
-        proxy_header X-Real-IP {remote}
-        proxy_header X-Forwarded-Proto {scheme}
-        websocket
-    }
+   proxy / localhost:8888 {
+       header_upstream X-Real-IP  {remote}
+       header_upstream Host {host}
+       header_upstream X-Forwarded-Proto {scheme}
+       websocket
+  }
 }
