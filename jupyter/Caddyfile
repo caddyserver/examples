@@ -1,5 +1,5 @@
 example.com {
-    proxy / localhost:10180 {
+    proxy / localhost:8888 {
         proxy_header Host {host}
         proxy_header X-Real-IP {remote}
         proxy_header X-Forwarded-Proto {scheme}
