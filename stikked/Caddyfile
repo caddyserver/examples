@@ -1,0 +1,14 @@
+localhost:81, https://paste.stevenwashere.com {
+
+
+        fastcgi / unix:/var/run/php/php7.0-fpm.sock php
+
+        root /var/www/paste.stevenwashere.com
+
+        rewrite / {
+    regexp ^(index.php|static|favicon.ico|robots.txt|sitemap.xml|google(.+).html)
+    to {path}
+    regexp ^(.*)
+    to index.php?/{path}
+}
+}
