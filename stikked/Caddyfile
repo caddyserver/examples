@@ -1,9 +1,9 @@
-localhost:81, https://paste.stevenwashere.com {
+https://paste.yourdomain.com {
 
 
         fastcgi / unix:/var/run/php/php7.0-fpm.sock php
 
-        root /var/www/paste.stevenwashere.com
+        root /var/www/paste.yourdomain.com
 
         rewrite / {
     regexp ^(index.php|static|favicon.ico|robots.txt|sitemap.xml|google(.+).html)
