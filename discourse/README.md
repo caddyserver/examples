@@ -16,6 +16,13 @@ expose:
 
 These lines map host ports to container ports. So, we set the 'real' port 8080 to map to the container's port 80. You can change `8080` to be any high port number you want. Then we disable the 443 mapping since Caddy terminates the TLS for us.
 
+Also comment the lines dealing with certificates, as now Caddy will take care of that. 
+
+```
+#  - "templates/web.ssl.template.yml"
+#  - "templates/web.letsencrypt.ssl.template.yml"
+```
+
 See enclosed Caddyfile for how to reverse-proxy into Discourse. Very simple, as you would expect.
 
 After you've changed app.yml and started Caddy, restart your container:
