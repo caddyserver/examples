@@ -1,0 +1,6 @@
+www.mycoolghostblog.com {
+	gzip
+	proxy / localhost:2368 {
+		transparent
+	}
+}
