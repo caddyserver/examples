@@ -1,0 +1,6 @@
+https://dav.example.org {
+    proxy / localhost:5232/ {
+        transparent
+        header_upstream X-Script-Name /
+    }
+}
