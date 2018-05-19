@@ -47,7 +47,7 @@ my-nextcloud-site.com {
 
 	# .htaccess / data / config / ... shouldn't be accessible from outside
 	status 403 {
-		/.htacces
+		/.htaccess
 		/data
 		/config
 		/db_structure
