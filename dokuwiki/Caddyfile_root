@@ -1,5 +1,5 @@
 localhost:8080
-root <Dir Where Your WP Site PHP files are>
+root <Dir Where Your Dokuwiki Site PHP files are>
 gzip
 
 fastcgi / /var/run/php-fpm/php-fpm.sock php {
