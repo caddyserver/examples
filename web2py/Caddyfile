@@ -1,0 +1,5 @@
+domain.tld {
+    proxy / localhost:8000 {
+        transparent
+    }
+}
