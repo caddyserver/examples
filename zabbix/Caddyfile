@@ -1,0 +1,10 @@
+zabbix.mydomain.tld {
+    root /usr/share/zabbix
+    status 404 {
+        /conf
+        /app
+        /include
+        /local
+    }
+    fastcgi / /var/run/php5-fpm.sock php
+}
