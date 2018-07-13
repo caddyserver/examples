@@ -13,10 +13,12 @@ rewrite {
   to /forbidden
 }
 rewrite /_media {
-  to /lib/exe/fetch.php?media={path}&{query}
+  r (.*)
+  to /lib/exe/fetch.php?media={1}
 }
 rewrite /_detail {
-  to /lib/exe/detail.php?media={path}&{query}
+  r (.*)
+  to /lib/exe/detail.php?media={1}
 }
 rewrite /_export {
   r /([^/]+)/(.*)
