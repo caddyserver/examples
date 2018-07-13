@@ -14,10 +14,12 @@ rewrite /wiki {
   to /wiki/forbidden
 }
 rewrite /wiki/_media {
-  to /wiki/lib/exe/fetch.php?media={path}&{query}
+  r (.*)
+  to /wiki/lib/exe/fetch.php?media={1}
 }
 rewrite /wiki/_detail {
-  to /wiki/lib/exe/detail.php?media={path}&{query}
+  r (.*)
+  to /wiki/lib/exe/detail.php?media={1}
 }
 rewrite /wiki/_export {
   r /([^/]+)/(.*)
