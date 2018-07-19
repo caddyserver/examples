@@ -1,11 +1,9 @@
 pipeline:
-  test:
-    image: golang
+  build:
+    image: ruby:2.3
     commands:
-      - sleep 15
-      - go get
-      - go test
-
-services:
-  database:
-    image: mysql
+      - bundle config mirror.https://rubygems.org https://gems.ruby-china.org
+      - bundle install
+      - apt-get update && apt-get install nodejs rsync -y && bundle exec middleman build --clean
+    when:
+      branch: master
