@@ -1,9 +1,9 @@
 pipeline:
   build:
-    image: ruby:2.3
+    image: ubuntu
     commands:
-      - bundle config mirror.https://rubygems.org https://gems.ruby-china.org
-      - bundle install
-      - apt-get update && apt-get install nodejs rsync -y && bundle exec middleman build --clean
+      - echo "nihao"
+      - sleep 10
+      - echo "hellow"
     when:
       branch: master
