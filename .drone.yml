@@ -1,13 +1,11 @@
 pipeline:
-  build:
+  test:
     image: golang
     commands:
+      - sleep 15
       - go get
-      - go build
       - go test
 
 services:
-  postgres:
-    image: postgres:9.4.5
-    environment:
-      - POSTGRES_USER=myapp
+  database:
+    image: mysql
