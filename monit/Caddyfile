@@ -1,0 +1,9 @@
+test.com {
+    rewite /monit {
+        r ^/monit/(.*)
+        to /$1
+    }
+    proxy /monit :8080 {
+        transparent
+    }
+}
