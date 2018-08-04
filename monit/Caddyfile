@@ -1,9 +1,10 @@
 test.com {
-    rewite /monit {
-        r ^/monit/(.*)
-        to /$1
+    redir 301 {
+        if {>referer} is https://test.com/monit
+        if {path} not_has monit/
+        / /monit/{path}
     }
     proxy /monit :8080 {
-        transparent
+        without /monit
     }
 }
