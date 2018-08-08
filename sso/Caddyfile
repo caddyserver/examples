@@ -1,0 +1,108 @@
+# In this example, http.login and http.jwt are used in conjunction to create
+# a single-sign on for any number of domains, as long as they all share the
+# same superdomain (in this case: sso.example.com)
+
+## SSO set-up
+# This domain will host the contents of /srv/sso, but only if the user is
+# authenticated. Otherwise, they will be redirected to the login page at
+# /login (this is a default page by Caddy, so you don't have to provide
+# your own).
+#
+# redirect_hosts.txt contains the allowed subdomains for redirects. It looks
+# like the one in this folder
+#
+# In this example, I'm using a .htpasswd file for users and passwords. Any
+# other type of authentication provider supported by http.login should work
+# as well.
+auth.sso.example.com {
+    root /srv/sso
+    header /login Cache-Control "no-cache, no-store, must-revalidate"
+    jwt {
+      except /login
+      path /
+      redirect /login?backTo=/
+      allow sub admin
+    }
+    login {
+      success_url /
+      htpasswd file=/config/sso/.htpasswd
+      cookie_http_only true
+      cookie-domain .sso.example.com
+      redirect true
+      redirect-query-parameter backTo
+      redirect-host-file /config/sso/redirect_hosts.txt
+      redirect-check-referer false
+    }
+}
+
+## This snippet enables SSO for a service
+# the allowed user is called 'my_user' here. If you need fine-grained control
+# over which user is allowed on which service, you may need to add the jwt label
+# directly to the service definition instead of importing this snippet
+(sso) {
+    jwt {
+      path /
+      redirect https://auth.sso.example.com/login?backTo={scheme}%3A%2F%2F{host}{rewrite_uri_escaped}
+      allow sub my_user
+    }
+}
+
+## SSO-enabled services
+
+# This is a simple static host that's protected by SSO
+service1.sso.example.com {
+    tls info@example.com
+    root /srv/service1
+    import sso
+}
+
+# This is a simple transparent proxy to another server. The server in question
+# may or may not be exposed to the internet, but it should be reachable from the
+# caddy server.
+service2.sso.example.com {
+    tls info@example.com
+    proxy / another-server.local:80 {
+        websocket
+        transparent
+    }
+    import sso
+}
+
+# The following examples show ways of bypassing built-in authentication for
+# services. Disclaimer: bypassing these authentication methods is a bad idea
+# when there's no other means of authentication in place, but seeing as we're
+# behind an SSO wall, we can do it here.
+
+# This example shows authorization to the upstream host using Basic authentication.
+# to find the correct hash, inspect network traffic to the server after you've
+# logged in directly
+service3.sso.example.com {
+    tls info@example.com
+    proxy / localhost:6789 {
+        websocket
+        transparent
+        header_upstream Authorization "Basic LO0dDsmQ7ley4x6t1ue2QeAK"
+    }
+    import sso
+}
+# This example shows authorization to the upstream host using a custom password header.
+# (this is the header required by Home Assistant)
+service4.sso.example.com {
+    tls info@example.com
+    proxy / other-container.docker:8123 {
+        websocket
+        transparent
+        header_upstream X-HA-Access my_api_password
+    }
+    import sso
+}
+# This example shows authorization to the upstream host using a generated API key.
+service5.sso.example.com {
+    tls info@example.com
+    proxy / some-domain.com:3000 {
+        websocket
+        transparent
+        header_upstream Authorization "Bearer eyJrIjoiWGdUWlBmSHdTNHRXVVdERnQ4VEFEMkhidktnTWxnT3YiLCJuIjoiU1NPIiwiaWQiOjF9"
+    }
+    import sso
+}

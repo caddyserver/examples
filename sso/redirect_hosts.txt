@@ -1,0 +1,5 @@
+service1.sso.example.com
+service2.sso.example.com
+service3.sso.example.com
+service4.sso.example.com
+service5.sso.example.com
