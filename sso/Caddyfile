@@ -27,6 +27,10 @@ auth.sso.example.com {
       success_url /
       htpasswd file=/config/sso/.htpasswd
       cookie_http_only true
+
+      # This directive allows the other services to verify the jwt token. It's
+      # also the reason we can only authenticate on services that share a common
+      # superdomain.
       cookie-domain .sso.example.com
       redirect true
       redirect-query-parameter backTo
