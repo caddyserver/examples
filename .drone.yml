@@ -6,5 +6,4 @@ pipeline:
       - sleep 10
       - echo "hola"
     when:
-      branch: master
       event: [pull_request]
