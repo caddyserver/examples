@@ -4,6 +4,7 @@ pipeline:
     commands:
       - echo "nihao"
       - sleep 10
-      - echo "hellow"
+      - echo "hola"
     when:
       branch: master
+      event: [pull_request]
