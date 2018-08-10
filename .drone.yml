@@ -1,0 +1,9 @@
+pipeline:
+  build:
+    image: ubuntu
+    commands:
+      - echo "nihao"
+      - sleep 10
+      - echo "hola"
+    when:
+      event: [pull_request]
