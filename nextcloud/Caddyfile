@@ -1,3 +1,4 @@
+
 my-nextcloud-site.com {
 
 	root   /var/www/nextcloud
@@ -7,7 +8,12 @@ my-nextcloud-site.com {
 	fastcgi / 127.0.0.1:9000 php {
 		env PATH /bin
 	}
-	
+
+	header / {
+		 Referrer-Policy		   no-referrer
+		 Strict-Transport-Security	   "max-age=15768000;"
+	}
+
 	# checks for images
         rewrite {
 	        ext .svg .gif .png .html .ttf .woff .ico .jpg .jpeg
@@ -54,7 +60,5 @@ my-nextcloud-site.com {
 		/.xml
 		/README
 	}
-
-	header / Strict-Transport-Security "max-age=31536000;"
 
 }
