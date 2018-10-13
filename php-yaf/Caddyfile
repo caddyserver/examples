@@ -1,0 +1,13 @@
+:8080 {
+    root <your_path>
+    index index.php
+    fastcgi / 127.0.0.1:9000 php {
+        ext .php
+        index index.php
+    }
+    
+    rewrite {
+        r ^/(.*)$
+        to /index.php/{1}
+    }
+}
