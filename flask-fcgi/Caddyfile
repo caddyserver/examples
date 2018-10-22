@@ -1,0 +1,2 @@
+localhost:9000
+fastcgi / unix:hello-world.sock
