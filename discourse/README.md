@@ -1,14 +1,14 @@
 # Discourse
 
-Running Discourse with Caddy is very easy. After you've installed Discourse, you need to adjust the container's configuration slightly.
+Running [Discourse](https://www.discourse.org/) with Caddy is very easy. After you've installed Discourse, you need to adjust the container's configuration slightly.
 
 `cd /var/discourse`
 
 `sudo nano containers/app.yml`
 
-Find the line that says `expose:' and change that section to:
+Find the line that says `expose:` and change that section to:
 
-```plain
+```yaml
 expose:
   - "8080:80"   # http
 # - "443:443"   # https
