@@ -2,8 +2,8 @@
 
 This is an example configuration on how to use [Dokuwiki](https://www.dokuwiki.org/) with Caddy.
 
-Caddyfile_root - caddy file when the location of dokuwiki is in the root directory
-Caddyfile_subdir - caddy file when the location of dokuwiki is in a subdirectory
+* __Caddyfile_root__ - caddy file when the location of dokuwiki is in the root directory
+* __Caddyfile_subdir__ - caddy file when the location of dokuwiki is in a subdirectory
 
 ## Prerequisites
 
