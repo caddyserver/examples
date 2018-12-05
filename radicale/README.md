@@ -12,4 +12,5 @@ Radicale will be available directly at https://dav.example.org/.
 
 If you want Radicale to be served at a path below `/`, you need to
 adjust the [`X-Script-Name`](https://radicale.org/proxy/) header in
-the [CaddyFile](./Caddyfile).
+the [CaddyFile](./Caddyfile) and since radicale V2.0 you need to 
+adjust the `without` rule as well.
