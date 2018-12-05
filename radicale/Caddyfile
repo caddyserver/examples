@@ -2,5 +2,7 @@ https://dav.example.org {
     proxy / localhost:5232/ {
         transparent
         header_upstream X-Script-Name /
+        # uncomment and adjust the following line if you want to serve radicale>2.0 in a path below "/"
+        # without /path_below
     }
 }
