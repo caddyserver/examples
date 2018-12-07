@@ -2,7 +2,7 @@
 
 Get an **A+** on [security header](https://securityheaders.com/) out of the box. These settings are well tested on websites in PROD.
 
-Before I was using CloudFlare worker (5$ per month) to get the same result. I asked myself, how does the ‘real server’ are configured to manage the scurity-header? This is how.
+Before I was using CloudFlare worker (5$ per month) to get the same result. I asked myself, how does the ‘real server’ are configured to manage the security-header? This is how.
 
 # Warning
 
