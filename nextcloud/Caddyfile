@@ -10,7 +10,6 @@ my-nextcloud-site.com {
 	}
 
 	header / {
-		 Referrer-Policy		   no-referrer
 		 Strict-Transport-Security	   "max-age=15768000;"
 	}
 
@@ -20,6 +19,19 @@ my-nextcloud-site.com {
 		r ^/index.php/(.+)$
 		to /{1} /index.php?{1}
 	}
+	
+	rewrite {
+                r ^/\.well-known/host-meta$
+                to /public.php?service=host-meta&{query}
+        }
+	rewrite {
+                r ^/\.well-known/host-meta\.json$
+                to /public.php?service=host-meta-json&{query}
+        }
+	rewrite {
+                r ^/\.well-known/webfinger$
+                to /public.php?service=webfinger&{query}
+        }
 
 	rewrite {
 		r ^/index.php/.*$
