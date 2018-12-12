@@ -2,7 +2,7 @@
 
 Get an **A+** on [security header](https://securityheaders.com/) out of the box. These settings are well tested on websites in PROD.
 
-Before I was using CloudFlare worker (5$ per month) to get the same result. I asked myself, how does the ‘real server’ are configured to manage the security-header? This is how.
+Before using this setup, I was using CloudFlare worker (5$ per month) to get the same result. I asked myself, how can I configure security header on my own server instead. This is how.
 
 # Warning
 
@@ -11,7 +11,7 @@ Test those default values locally as they could prevent your website functioning
 - **Content Security Policy** is an effective measure to protect your site from XSS attacks. By whitelisting sources of approved content, you can prevent the browser from loading malicious assets. Analyse this policy in more detail. You can sign up for a free account on Report URI to collect reports about problems on your site.
 - **Feature Policy** is a new header that allows a site to control which features and APIs can be used in the browser.
 - **Referrer Policy** is a new header that allows a site to control how much information the browser includes with navigations away from a document and should be set by all sites.
-- **HTTP Strict Transport Security** is an excellent feature to support on your site and strengthens your implementation of TLS by getting the User Agent to enforce the use of HTTPS.
+- **HTTP Strict Transport Security** is an excellent feature to support on your site and strengthens your implementation of TLS by getting the User Agent to enforce the use of HTTPS. ⚠️ Warning - it requires that the site is served over HTTPS for the duration specified in the header. Failing to do so will brick users out of the site.
 - **X-Content-Type-Options** stops a browser from trying to MIME-sniff the content type and forces it to stick with the declared content-type. The only valid value for this header is "X-Content-Type-Options: nosniff".
 - **X-Frame-Options** tells the browser whether you want to allow your site to be framed or not. By preventing a browser from framing your site you can defend against attacks like clickjacking.
 - **X-XSS-Protection** sets the configuration for the cross-site scripting filters built into most browsers. The best configuration is "X-XSS-Protection: 1; mode=block".
