@@ -1,0 +1,10 @@
+    yoursite.com {
+        tls yourmail@youermail.com
+        root /home/wwwroot/yoursite.com
+        gzip
+        fastcgi / 127.0.0.1:9000 php
+        rewrite / {
+                if {path} not_match (/usr/|/admin/)
+                to /index.php{uri}
+        }
+}
