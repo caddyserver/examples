@@ -1,0 +1,14 @@
+example.com {
+	fastcgi / localhost:9000 php {
+		index index.php
+		env PICO_URL_REWRITING 1
+	}
+	rewrite {
+		ext .yml .yaml .md .gitignore .svn .lock .json .phar
+		if {path} match (config/|vendor/|content/)
+		to /index.php?404
+	}
+	rewrite {
+		to {path} /index.php?{path}&{query}
+	}
+}
