@@ -1,8 +1,6 @@
-example.com {
-   proxy / localhost:8888 {
-       header_upstream X-Real-IP  {remote}
-       header_upstream Host {host}
-       header_upstream X-Forwarded-Proto {scheme}
-       websocket
-  }
+example.com
+
+proxy / localhost:8888 {
+	transparent
+	websocket
 }
