@@ -1,6 +1,7 @@
 import sys
 import os
 import logging
+import traceback
 
 from flup.server.fcgi import WSGIServer
 from flask import Flask
