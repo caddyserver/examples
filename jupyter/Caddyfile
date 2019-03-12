@@ -1,0 +1,6 @@
+example.com
+
+proxy / localhost:8888 {
+	transparent
+	websocket
+}
