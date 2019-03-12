@@ -1,0 +1,10 @@
+test.com {
+    redir 301 {
+        if {>referer} is https://test.com/monit
+        if {path} not_has monit/
+        / /monit/{path}
+    }
+    proxy /monit :8080 {
+        without /monit
+    }
+}
