@@ -1,0 +1,35 @@
+example.com, www.example.com	{
+		gzip {
+			ext		*
+			level	4
+		}
+		proxy / localhost:81 {
+			transparent
+			websocket
+		}
+		header / {
+			Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
+			X-XSS-Protection "1; mode=block;"
+			X-Content-Type-Options "nosniff"
+			X-Frame-Options "SAMEORIGIN"
+		}
+		limits {
+			header	64kb
+			body	8gb
+		}
+		ext	.html	.htm	.php
+		root /var/www/html
+		log / /var/logs/caddy/access.log {
+			rotate_size		10
+			rotate_age		14
+			rotate_keep		10
+			rotate_compress
+		}
+		errors /var/logs/caddy/error.log
+		timeouts {
+			read	5s
+			header	5s
+			write	0
+			idle	20s
+		}
+}
