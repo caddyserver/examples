@@ -1,5 +1,5 @@
-domain.tld {
-    proxy / localhost:8000 {
-        transparent
-    }
+example.com
+
+proxy / localhost:8000 {
+	transparent
 }
