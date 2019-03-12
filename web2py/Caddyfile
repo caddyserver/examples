@@ -1,0 +1,5 @@
+example.com
+
+proxy / localhost:8000 {
+	transparent
+}
