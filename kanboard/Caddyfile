@@ -1,4 +1,23 @@
-host.yourdomain.tld {
-	root /var/www/html/kanboard
-	fastcgi / unix:/run/php/php7.0-fpm.sock php 
+your.tld. {
+
+        root    /srv/www/htdocs/your.tld/kanboard
+        log    /var/log/access.log
+        errors /var/log/error.log
+        
+	#fastcgi        / unix:/run/php/php7-fpm.sock php
+        fastcgi / 127.0.0.1:9000 php
+
+        header / {
+               Strict-Transport-Security "max-age=15768000;"
+        }
+
+        # .htaccess / data / ... shouldn't be accessible from outside
+        status 403 {
+                /.htaccess
+                /data
+                /app
+                /ChangeLog
+                /web.config
+        }
+
 }
