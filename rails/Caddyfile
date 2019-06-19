@@ -1,12 +1,9 @@
 https://domain.tld {
-  gzip
   root /path/to/current/public
-  log /path/to/shared/log/caddy_access.log
-  errors /path/to/shared/log/caddy_error.log
 
   # https://caddyserver.com/docs/proxy
   proxy / unix:///path/to/shared/tmp/sockets/puma.sock {
-		except /assets # this is /public/assets directory
-		transparent 
+    except /assets # this is /public/assets directory
+    transparent
   }
 }
