@@ -1,0 +1,9 @@
+https://domain.tld {
+  root /path/to/current/public
+
+  # https://caddyserver.com/docs/proxy
+  proxy / unix:///path/to/shared/tmp/sockets/puma.sock {
+    except /assets # this is /public/assets directory
+    transparent
+  }
+}
