@@ -1,0 +1,16 @@
+example.com {
+        gzip
+
+	# redirect all requests (include trailing '/')
+        redir /syncthing /syncthing/ 302
+        proxy /syncthing 127.0.0.1:8384/ {
+                transparent
+                without /syncthing
+        }
+
+        timeouts {
+                read none
+                write none
+                header none
+        }
+}
