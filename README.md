@@ -17,4 +17,4 @@ Please contribute new examples! We're happy to accept contributions that adhere 
 - **Create a Caddyfile file.** When applicable, create a file in your example folder called Caddyfile with the contents of the Caddyfile. You may annotate the Caddyfile with comments or describe it in the README, either way is fine.
 - **Please keep it maintained.** As the web application or use case associated with your example evolves, please keep the example maintained for future readers. Lots of people rely on examples to learn.
 
-Thank you for being a part of our community! (We invite you to check out [our forums](https://forum.caddyserver.com) too!)
+Thank you for being a part of our community! (We invite you to check out [our forums](https://caddy.community/) too!)
