@@ -9,7 +9,7 @@ At the moment, Caddy doesn't support the uwsgi protocol, however check [this iss
 
 2. Launch Gunicorn:
 
-    `gunicorn -b "127.0.0.1:8000" project.wsgi`
+    `gunicorn -b "127.0.0.1:8000" MODULE_NAME:app`
 
     Usually, you will have your Gunicorn script on a supervisor, or 
     something else
