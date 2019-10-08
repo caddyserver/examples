@@ -1,0 +1,12 @@
+example.com {
+	root <directory where your OneIndex site PHP files are>
+	fastcgi / unix:/run/php/php7.3-fpm.sock php	# other php-fpm.sock or 127.0.0.1:9000
+	rewrite {
+		to {path} {path}/ /index.php?{query}	# Remove the url /?/  If you do not, you do not have to configure rewite
+	}
+	cors / {
+		origin    https://other.example.com
+		#origin   Other sites you want to configure the CORS, If you do not, you do not have to configure cors
+		methods   GET
+	}
+}
