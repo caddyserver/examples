@@ -1,0 +1,18 @@
+example.com {
+        root /usr/share/smokeping/www
+        fastcgi / unix:/var/run/fcgiwrap.socket {
+                env SCRIPT_FILENAME /usr/share/smokeping/smokeping.cgi
+        }
+}
+example.com/js {
+        root /usr/share/smokeping/www/js
+}
+example.com/css {
+        root /usr/share/smokeping/www/css
+}
+example.com/cache {
+        root /var/cache/smokeping
+}
+example.com/smokeping/images {
+	      root /usr/share/smokeping/www/images
+}
