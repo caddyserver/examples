@@ -1,0 +1,32 @@
+collabora.example.com {
+  # Static html, js, images, etc. served from loolwsd
+  # Loleaflet is the client part of LibreOffice Online
+  encode gzip
+  reverse_proxy /loleaflet/* https://collabora:9980 {
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+
+  # WOPI discovery URL
+  reverse_proxy /hosting/discovery https://collabora:9980 {
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+
+  # Show capabilities as json
+  reverse_proxy /hosting/capabilities https://collabora:9980 {
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+
+  # Main websocket plus
+  # Download as, fullscreen presentation and image upload operations
+  reverse_proxy /lool/* https://collabora:9980 {
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+}
